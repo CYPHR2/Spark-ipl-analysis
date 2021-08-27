@@ -1,0 +1,3729 @@
+     ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 3.1.2
+      /_/
+
+Using Python version 3.8.2 (default, Jul 16 2020 14:00:26)
+Spark context Web UI available at http://10.0.2.15:4041
+Spark context available as 'sc' (master = local[*], app id = local-1629935251946).
+SparkSession available as 'spark'.
+>>> from pyspark.sql.functions import *
+>>> var = spark.read.json("sample.json", multiLine = "true")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/readwriter.py", line 372, in json
+    return self._df(self._jreader.json(self._spark._sc._jvm.PythonUtils.toSeq(path)))
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1304, in __call__
+  File "/opt/spark/python/pyspark/sql/utils.py", line 117, in deco
+    raise converted from None
+pyspark.sql.utils.AnalysisException: Path does not exist: file:/home/sunil/sample.json
+>>> x-special/nautilus-clipboard
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'x' is not defined
+>>> copy
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'copy' is not defined
+>>> file:///home/sunil/sparkGit/sample.json
+  File "<stdin>", line 1
+    file:///home/sunil/sparkGit/sample.json
+         ^
+SyntaxError: invalid syntax
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> from pyspark.sql.functions import *
+>>> var = spark.read.json("sample.json", multiLine = "true")
+[Stage 0:>                                                          (0 + 0) / 1[Stage 0:>                                                          (0 + 1) / 1                                                                               21/08/26 05:19:42 WARN package: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
+>>> var = spark.read.json("sample.json", multiLine = "true")
+>>> var2 = var.select("innings")
+>>> var4 = var2.select(explode("innings.overs"))
+>>> var5=var4.select(explode("col.deliveries"))
+>>> dataSet = var5.select("col.batter","col.bowler",col("col.runs.batter").alias("runs"))
+>>> dataset.show()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'dataset' is not defined
+>>> dataSet.show()
+[Stage 2:>                                                          (0 + 1) / 1                                                                               +--------------------+--------------------+--------------------+
+|              batter|              bowler|                runs|
++--------------------+--------------------+--------------------+
+|[SC Ganguly, BB M...|[P Kumar, P Kumar...|[0, 0, 0, 0, 0, 0...|
+|[BB McCullum, BB ...|[Z Khan, Z Khan, ...|  [0, 4, 4, 6, 4, 0]|
+|[SC Ganguly, SC G...|[P Kumar, P Kumar...|  [0, 0, 0, 4, 1, 0]|
+|[BB McCullum, BB ...|[AA Noffke, AA No...|[0, 6, 0, 4, 0, 1...|
+|[SC Ganguly, SC G...|[P Kumar, P Kumar...|  [4, 1, 4, 0, 1, 0]|
+|[BB McCullum, SC ...|[Z Khan, Z Khan, ...|  [1, 0, 0, 0, 0, 0]|
+|[BB McCullum, RT ...|[AA Noffke, AA No...|  [1, 1, 1, 2, 1, 1]|
+|[BB McCullum, BB ...|[Z Khan, Z Khan, ...|  [0, 1, 1, 1, 1, 1]|
+|[BB McCullum, BB ...|[JH Kallis, JH Ka...|  [0, 0, 0, 1, 1, 2]|
+|[RT Ponting, BB M...|[SB Joshi, SB Jos...|  [1, 1, 1, 0, 6, 1]|
+|[BB McCullum, RT ...|[JH Kallis, JH Ka...|  [1, 4, 0, 6, 0, 0]|
+|[BB McCullum, BB ...|[SB Joshi, SB Jos...|  [0, 6, 2, 1, 0, 1]|
+|[RT Ponting, BB M...|[JH Kallis, JH Ka...|[0, 4, 0, 2, 0, 4...|
+|[BB McCullum, DJ ...|[SB Joshi, SB Jos...|  [1, 0, 1, 1, 1, 2]|
+|[DJ Hussey, DJ Hu...|[CL White, CL Whi...|[4, 1, 6, 4, 0, 1...|
+|[DJ Hussey, DJ Hu...|[AA Noffke, AA No...|  [0, 1, 2, 0, 1, 0]|
+|[BB McCullum, DJ ...|[Z Khan, Z Khan, ...|  [1, 2, 1, 6, 2, 2]|
+|[DJ Hussey, BB Mc...|[AA Noffke, AA No...|  [0, 1, 0, 1, 4, 1]|
+|[BB McCullum, BB ...|[JH Kallis, JH Ka...|  [6, 0, 6, 4, 1, 4]|
+|[BB McCullum, BB ...|[P Kumar, P Kumar...|  [6, 6, 2, 0, 2, 6]|
++--------------------+--------------------+--------------------+
+only showing top 20 rows
+
+>>> bat = dataSet.select(explode("batter").alias("batsman"))
+>>> bat.show()
++-----------+
+|    batsman|
++-----------+
+| SC Ganguly|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+| SC Ganguly|
+| SC Ganguly|
+| SC Ganguly|
+|BB McCullum|
+|BB McCullum|
+| SC Ganguly|
+|BB McCullum|
++-----------+
+only showing top 20 rows
+
+>>> bat.show(400,False)
++---------------+
+|batsman        |
++---------------+
+|SC Ganguly     |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|SC Ganguly     |
+|SC Ganguly     |
+|SC Ganguly     |
+|BB McCullum    |
+|BB McCullum    |
+|SC Ganguly     |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|SC Ganguly     |
+|SC Ganguly     |
+|SC Ganguly     |
+|BB McCullum    |
+|SC Ganguly     |
+|SC Ganguly     |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|SC Ganguly     |
+|BB McCullum    |
+|SC Ganguly     |
+|RT Ponting     |
+|RT Ponting     |
+|RT Ponting     |
+|RT Ponting     |
+|BB McCullum    |
+|RT Ponting     |
+|BB McCullum    |
+|RT Ponting     |
+|RT Ponting     |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|RT Ponting     |
+|BB McCullum    |
+|RT Ponting     |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|RT Ponting     |
+|BB McCullum    |
+|RT Ponting     |
+|BB McCullum    |
+|RT Ponting     |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|RT Ponting     |
+|RT Ponting     |
+|RT Ponting     |
+|RT Ponting     |
+|RT Ponting     |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|RT Ponting     |
+|RT Ponting     |
+|RT Ponting     |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|DJ Hussey      |
+|DJ Hussey      |
+|BB McCullum    |
+|DJ Hussey      |
+|BB McCullum    |
+|DJ Hussey      |
+|DJ Hussey      |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|DJ Hussey      |
+|BB McCullum    |
+|DJ Hussey      |
+|DJ Hussey      |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|DJ Hussey      |
+|BB McCullum    |
+|DJ Hussey      |
+|DJ Hussey      |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|DJ Hussey      |
+|BB McCullum    |
+|Mohammad Hafeez|
+|Mohammad Hafeez|
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|Mohammad Hafeez|
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|BB McCullum    |
+|R Dravid       |
+|W Jaffer       |
+|W Jaffer       |
+|W Jaffer       |
+|R Dravid       |
+|W Jaffer       |
+|W Jaffer       |
+|R Dravid       |
+|V Kohli        |
+|V Kohli        |
+|V Kohli        |
+|W Jaffer       |
+|W Jaffer       |
+|V Kohli        |
+|V Kohli        |
+|JH Kallis      |
+|W Jaffer       |
+|W Jaffer       |
+|W Jaffer       |
+|W Jaffer       |
+|W Jaffer       |
+|W Jaffer       |
+|JH Kallis      |
+|JH Kallis      |
+|W Jaffer       |
+|W Jaffer       |
+|JH Kallis      |
+|W Jaffer       |
+|JH Kallis      |
+|JH Kallis      |
+|JH Kallis      |
+|CL White       |
+|W Jaffer       |
+|W Jaffer       |
+|MV Boucher     |
+|MV Boucher     |
+|CL White       |
+|MV Boucher     |
+|CL White       |
+|CL White       |
+|CL White       |
+|MV Boucher     |
+|MV Boucher     |
+|MV Boucher     |
+|MV Boucher     |
+|MV Boucher     |
+|CL White       |
+|MV Boucher     |
+|CL White       |
+|MV Boucher     |
+|MV Boucher     |
+|CL White       |
+|B Akhil        |
+|B Akhil        |
+|AA Noffke      |
+|AA Noffke      |
+|AA Noffke      |
+|AA Noffke      |
+|CL White       |
+|CL White       |
+|AA Noffke      |
+|P Kumar        |
+|P Kumar        |
+|P Kumar        |
+|P Kumar        |
+|AA Noffke      |
+|AA Noffke      |
+|AA Noffke      |
+|AA Noffke      |
+|AA Noffke      |
+|AA Noffke      |
+|P Kumar        |
+|P Kumar        |
+|AA Noffke      |
+|Z Khan         |
+|Z Khan         |
+|Z Khan         |
+|P Kumar        |
+|P Kumar        |
+|P Kumar        |
+|P Kumar        |
+|Z Khan         |
+|P Kumar        |
+|Z Khan         |
+|Z Khan         |
+|Z Khan         |
+|Z Khan         |
+|SB Joshi       |
+|P Kumar        |
+|P Kumar        |
+|P Kumar        |
+|P Kumar        |
+|SB Joshi       |
+|SB Joshi       |
+|SB Joshi       |
+|SB Joshi       |
+|P Kumar        |
+|SB Joshi       |
+|P Kumar        |
+|SB Joshi       |
+|SB Joshi       |
++---------------+
+
+>>> bowlers = dataSet.select(explode("bowler").alias("bowler"))
+>>> runs = dataSet.select(explode("runs").alias("runs"))
+>>> bowlers.show(400,False)
++----------+
+|bowler    |
++----------+
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|SB Joshi  |
+|SB Joshi  |
+|SB Joshi  |
+|SB Joshi  |
+|SB Joshi  |
+|SB Joshi  |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|SB Joshi  |
+|SB Joshi  |
+|SB Joshi  |
+|SB Joshi  |
+|SB Joshi  |
+|SB Joshi  |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|SB Joshi  |
+|SB Joshi  |
+|SB Joshi  |
+|SB Joshi  |
+|SB Joshi  |
+|SB Joshi  |
+|CL White  |
+|CL White  |
+|CL White  |
+|CL White  |
+|CL White  |
+|CL White  |
+|CL White  |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|Z Khan    |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|AA Noffke |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|JH Kallis |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|P Kumar   |
+|AB Dinda  |
+|AB Dinda  |
+|AB Dinda  |
+|AB Dinda  |
+|AB Dinda  |
+|AB Dinda  |
+|AB Dinda  |
+|I Sharma  |
+|I Sharma  |
+|I Sharma  |
+|I Sharma  |
+|I Sharma  |
+|I Sharma  |
+|AB Dinda  |
+|AB Dinda  |
+|AB Dinda  |
+|AB Dinda  |
+|AB Dinda  |
+|AB Dinda  |
+|AB Dinda  |
+|I Sharma  |
+|I Sharma  |
+|I Sharma  |
+|I Sharma  |
+|I Sharma  |
+|I Sharma  |
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Dinda  |
+|AB Dinda  |
+|AB Dinda  |
+|AB Dinda  |
+|AB Dinda  |
+|AB Dinda  |
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|AB Agarkar|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|LR Shukla |
+|LR Shukla |
+|LR Shukla |
+|LR Shukla |
+|LR Shukla |
+|LR Shukla |
+|LR Shukla |
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|SC Ganguly|
+|I Sharma  |
+|I Sharma  |
+|I Sharma  |
+|I Sharma  |
+|I Sharma  |
+|I Sharma  |
+|I Sharma  |
+|LR Shukla |
+|LR Shukla |
++----------+
+
+>>> runs.show(400,False)
++----+
+|runs|
++----+
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|4   |
+|4   |
+|6   |
+|4   |
+|0   |
+|0   |
+|0   |
+|0   |
+|4   |
+|1   |
+|0   |
+|0   |
+|6   |
+|0   |
+|4   |
+|0   |
+|1   |
+|6   |
+|4   |
+|1   |
+|4   |
+|0   |
+|1   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|1   |
+|1   |
+|2   |
+|1   |
+|1   |
+|0   |
+|1   |
+|1   |
+|1   |
+|1   |
+|1   |
+|0   |
+|0   |
+|0   |
+|1   |
+|1   |
+|2   |
+|1   |
+|1   |
+|1   |
+|0   |
+|6   |
+|1   |
+|1   |
+|4   |
+|0   |
+|6   |
+|0   |
+|0   |
+|0   |
+|6   |
+|2   |
+|1   |
+|0   |
+|1   |
+|0   |
+|4   |
+|0   |
+|2   |
+|0   |
+|4   |
+|1   |
+|1   |
+|0   |
+|1   |
+|1   |
+|1   |
+|2   |
+|4   |
+|1   |
+|6   |
+|4   |
+|0   |
+|1   |
+|6   |
+|0   |
+|1   |
+|2   |
+|0   |
+|1   |
+|0   |
+|1   |
+|2   |
+|1   |
+|6   |
+|2   |
+|2   |
+|0   |
+|1   |
+|0   |
+|1   |
+|4   |
+|1   |
+|6   |
+|0   |
+|6   |
+|4   |
+|1   |
+|4   |
+|6   |
+|6   |
+|2   |
+|0   |
+|2   |
+|6   |
+|1   |
+|0   |
+|0   |
+|1   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|1   |
+|2   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|1   |
+|0   |
+|6   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|1   |
+|0   |
+|0   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|4   |
+|1   |
+|0   |
+|1   |
+|2   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|2   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|4   |
+|1   |
+|0   |
+|0   |
+|0   |
+|1   |
+|4   |
+|0   |
+|1   |
+|0   |
+|0   |
+|1   |
+|0   |
+|1   |
+|6   |
+|0   |
+|1   |
+|1   |
+|0   |
+|0   |
+|1   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|6   |
+|0   |
+|0   |
+|0   |
+|1   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
++----+
+
+>>> runs.show(400,False)
++----+
+|runs|
++----+
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|4   |
+|4   |
+|6   |
+|4   |
+|0   |
+|0   |
+|0   |
+|0   |
+|4   |
+|1   |
+|0   |
+|0   |
+|6   |
+|0   |
+|4   |
+|0   |
+|1   |
+|6   |
+|4   |
+|1   |
+|4   |
+|0   |
+|1   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|1   |
+|1   |
+|2   |
+|1   |
+|1   |
+|0   |
+|1   |
+|1   |
+|1   |
+|1   |
+|1   |
+|0   |
+|0   |
+|0   |
+|1   |
+|1   |
+|2   |
+|1   |
+|1   |
+|1   |
+|0   |
+|6   |
+|1   |
+|1   |
+|4   |
+|0   |
+|6   |
+|0   |
+|0   |
+|0   |
+|6   |
+|2   |
+|1   |
+|0   |
+|1   |
+|0   |
+|4   |
+|0   |
+|2   |
+|0   |
+|4   |
+|1   |
+|1   |
+|0   |
+|1   |
+|1   |
+|1   |
+|2   |
+|4   |
+|1   |
+|6   |
+|4   |
+|0   |
+|1   |
+|6   |
+|0   |
+|1   |
+|2   |
+|0   |
+|1   |
+|0   |
+|1   |
+|2   |
+|1   |
+|6   |
+|2   |
+|2   |
+|0   |
+|1   |
+|0   |
+|1   |
+|4   |
+|1   |
+|6   |
+|0   |
+|6   |
+|4   |
+|1   |
+|4   |
+|6   |
+|6   |
+|2   |
+|0   |
+|2   |
+|6   |
+|1   |
+|0   |
+|0   |
+|1   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|1   |
+|2   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|1   |
+|0   |
+|6   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|1   |
+|0   |
+|0   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|4   |
+|1   |
+|0   |
+|1   |
+|2   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|2   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|4   |
+|1   |
+|0   |
+|0   |
+|0   |
+|1   |
+|4   |
+|0   |
+|1   |
+|0   |
+|0   |
+|1   |
+|0   |
+|1   |
+|6   |
+|0   |
+|1   |
+|1   |
+|0   |
+|0   |
+|1   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|6   |
+|0   |
+|0   |
+|0   |
+|1   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
++----+
+
+>>> runs.show(400,False).count()
++----+
+|runs|
++----+
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|4   |
+|4   |
+|6   |
+|4   |
+|0   |
+|0   |
+|0   |
+|0   |
+|4   |
+|1   |
+|0   |
+|0   |
+|6   |
+|0   |
+|4   |
+|0   |
+|1   |
+|6   |
+|4   |
+|1   |
+|4   |
+|0   |
+|1   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|1   |
+|1   |
+|2   |
+|1   |
+|1   |
+|0   |
+|1   |
+|1   |
+|1   |
+|1   |
+|1   |
+|0   |
+|0   |
+|0   |
+|1   |
+|1   |
+|2   |
+|1   |
+|1   |
+|1   |
+|0   |
+|6   |
+|1   |
+|1   |
+|4   |
+|0   |
+|6   |
+|0   |
+|0   |
+|0   |
+|6   |
+|2   |
+|1   |
+|0   |
+|1   |
+|0   |
+|4   |
+|0   |
+|2   |
+|0   |
+|4   |
+|1   |
+|1   |
+|0   |
+|1   |
+|1   |
+|1   |
+|2   |
+|4   |
+|1   |
+|6   |
+|4   |
+|0   |
+|1   |
+|6   |
+|0   |
+|1   |
+|2   |
+|0   |
+|1   |
+|0   |
+|1   |
+|2   |
+|1   |
+|6   |
+|2   |
+|2   |
+|0   |
+|1   |
+|0   |
+|1   |
+|4   |
+|1   |
+|6   |
+|0   |
+|6   |
+|4   |
+|1   |
+|4   |
+|6   |
+|6   |
+|2   |
+|0   |
+|2   |
+|6   |
+|1   |
+|0   |
+|0   |
+|1   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|1   |
+|2   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|1   |
+|0   |
+|6   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|1   |
+|0   |
+|0   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|4   |
+|1   |
+|0   |
+|1   |
+|2   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|0   |
+|1   |
+|2   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|0   |
+|4   |
+|1   |
+|0   |
+|0   |
+|0   |
+|1   |
+|4   |
+|0   |
+|1   |
+|0   |
+|0   |
+|1   |
+|0   |
+|1   |
+|6   |
+|0   |
+|1   |
+|1   |
+|0   |
+|0   |
+|1   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
+|6   |
+|0   |
+|0   |
+|0   |
+|1   |
+|0   |
+|1   |
+|0   |
+|0   |
+|0   |
++----+
+
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'NoneType' object has no attribute 'count'
+>>> runs_count = dataSet.select(explode("runs").alias("runs")).count()
+>>> print(runs_count)
+225
+>>> runs_total = dataSet.select(explode("runs").alias("runs")).sum()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/dataframe.py", line 1643, in __getattr__
+    raise AttributeError(
+AttributeError: 'DataFrame' object has no attribute 'sum'
+>>> runs_total =sum(runs_count)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/functions.py", line 184, in sum
+    return _invoke_function_over_column("sum", col)
+  File "/opt/spark/python/pyspark/sql/functions.py", line 66, in _invoke_function_over_column
+    return _invoke_function(name, _to_java_column(col))
+  File "/opt/spark/python/pyspark/sql/column.py", line 45, in _to_java_column
+    raise TypeError(
+TypeError: Invalid argument, not a string or column: 225 of type <class 'int'>. For column literals, use 'lit', 'array', 'struct' or 'create_map' function.
+>>> 
+>>> 
+>>> 
+>>> runs_total = dataSet.groupBy("runs").alias("runs").sum("runs")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'GroupedData' object has no attribute 'alias'
+>>> runs_total = dataSet.groupBy("runs").sum("runs")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/group.py", line 41, in _api
+    jdf = getattr(self._jgd, name)(_to_seq(self.sql_ctx._sc, cols))
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1304, in __call__
+  File "/opt/spark/python/pyspark/sql/utils.py", line 117, in deco
+    raise converted from None
+pyspark.sql.utils.AnalysisException: "runs" is not a numeric column. Aggregation function can only be applied on a numeric column.
+>>> runs_total = dataSet.groupBy(explode("runs")).sum("runs")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/group.py", line 41, in _api
+    jdf = getattr(self._jgd, name)(_to_seq(self.sql_ctx._sc, cols))
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1304, in __call__
+  File "/opt/spark/python/pyspark/sql/utils.py", line 117, in deco
+    raise converted from None
+pyspark.sql.utils.AnalysisException: "runs" is not a numeric column. Aggregation function can only be applied on a numeric column.
+>>> runs.show()
++----+
+|runs|
++----+
+|   0|
+|   0|
+|   0|
+|   0|
+|   0|
+|   0|
+|   0|
+|   0|
+|   4|
+|   4|
+|   6|
+|   4|
+|   0|
+|   0|
+|   0|
+|   0|
+|   4|
+|   1|
+|   0|
+|   0|
++----+
+only showing top 20 rows
+
+>>> runs.groupBy("runs").sum("runs")
+DataFrame[runs: bigint, sum(runs): bigint]
+>>> runs_total=runs.groupBy("runs").sum("runs")
+>>> run_total.show()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'run_total' is not defined
+>>> runs_total.show()
+[Stage 17:=======================================>                (14 + 1) / 20[Stage 17:==================================================>     (18 + 1) / 20                                                                               [Stage 19:=======>                                               (13 + 1) / 100[Stage 19:=========>                                             (17 + 1) / 100[Stage 19:===========>                                           (21 + 1) / 100[Stage 19:=============>                                         (25 + 1) / 100[Stage 19:===============>                                       (29 + 1) / 100[Stage 19:==================>                                    (33 + 1) / 100[Stage 19:====================>                                  (37 + 1) / 100[Stage 19:======================>                                (41 + 1) / 100[Stage 19:========================>                              (44 + 2) / 100[Stage 19:=========================>                             (47 + 1) / 100[Stage 19:============================>                          (51 + 1) / 100[Stage 19:==============================>                        (56 + 1) / 100[Stage 19:================================>                      (59 + 1) / 100[Stage 19:===================================>                   (64 + 1) / 100[Stage 19:====================================>                  (67 + 1) / 100[Stage 19:=======================================>               (72 + 1) / 100[Stage 19:==========================================>            (77 + 1) / 100[Stage 19:============================================>          (81 + 1) / 100[Stage 19:==============================================>        (85 + 1) / 100[Stage 19:=================================================>     (90 + 1) / 100[Stage 19:===================================================>   (94 + 1) / 100[Stage 19:======================================================>(99 + 1) / 100                                                                               [Stage 21:==============>                                         (19 + 1) / 75[Stage 21:==================>                                     (25 + 1) / 75[Stage 21:======================>                                 (30 + 1) / 75[Stage 21:==========================>                             (36 + 1) / 75[Stage 21:=============================>                          (40 + 1) / 75[Stage 21:=================================>                      (45 + 1) / 75[Stage 21:======================================>                 (51 + 1) / 75[Stage 21:=========================================>              (56 + 1) / 75[Stage 21:============================================>           (60 + 1) / 75[Stage 21:================================================>       (65 + 2) / 75[Stage 21:===================================================>    (69 + 1) / 75                                                                               +----+---------+
+|runs|sum(runs)|
++----+---------+
+|   0|        0|
+|   6|      102|
+|   1|       66|
+|   2|       28|
+|   4|       72|
++----+---------+
+
+>>> 
+>>> 
+>>> 
+>>> var = spark.read.json("sample.json", multiLine = "true")
+>>> var2 = var.select("innings")
+>>> var2.printSchema()
+root
+ |-- innings: array (nullable = true)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- overs: array (nullable = true)
+ |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |-- deliveries: array (nullable = true)
+ |    |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |    |-- batter: string (nullable = true)
+ |    |    |    |    |    |    |-- bowler: string (nullable = true)
+ |    |    |    |    |    |    |-- extras: struct (nullable = true)
+ |    |    |    |    |    |    |    |-- byes: long (nullable = true)
+ |    |    |    |    |    |    |    |-- legbyes: long (nullable = true)
+ |    |    |    |    |    |    |    |-- wides: long (nullable = true)
+ |    |    |    |    |    |    |-- non_striker: string (nullable = true)
+ |    |    |    |    |    |    |-- runs: struct (nullable = true)
+ |    |    |    |    |    |    |    |-- batter: long (nullable = true)
+ |    |    |    |    |    |    |    |-- extras: long (nullable = true)
+ |    |    |    |    |    |    |    |-- total: long (nullable = true)
+ |    |    |    |    |    |    |-- wickets: array (nullable = true)
+ |    |    |    |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |    |    |    |-- fielders: array (nullable = true)
+ |    |    |    |    |    |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |    |    |    |    |    |-- name: string (nullable = true)
+ |    |    |    |    |    |    |    |    |-- kind: string (nullable = true)
+ |    |    |    |    |    |    |    |    |-- player_out: string (nullable = true)
+ |    |    |    |    |-- over: long (nullable = true)
+ |    |    |-- powerplays: array (nullable = true)
+ |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |-- from: double (nullable = true)
+ |    |    |    |    |-- to: double (nullable = true)
+ |    |    |    |    |-- type: string (nullable = true)
+ |    |    |-- target: struct (nullable = true)
+ |    |    |    |-- overs: long (nullable = true)
+ |    |    |    |-- runs: long (nullable = true)
+ |    |    |-- team: string (nullable = true)
+
+>>> import pandas as pd
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'pandas'
+>>> runs
+DataFrame[runs: bigint]
+>>> bats
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'bats' is not defined
+>>> batsman
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'batsman' is not defined
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> bat
+DataFrame[batsman: string]
+>>> bowler
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'bowler' is not defined
+>>> bowlers
+DataFrame[bowler: string]
+>>> runs
+DataFrame[runs: bigint]
+>>> 
+>>> 
+>>> 
+>>> bat_runs =  bat.join(runs)
+>>> bar_runs.show()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'bar_runs' is not defined
+>>> bat_runs.show()
++----------+----+
+|   batsman|runs|
++----------+----+
+|SC Ganguly|   0|
+|SC Ganguly|   0|
+|SC Ganguly|   0|
+|SC Ganguly|   0|
+|SC Ganguly|   0|
+|SC Ganguly|   0|
+|SC Ganguly|   0|
+|SC Ganguly|   0|
+|SC Ganguly|   4|
+|SC Ganguly|   4|
+|SC Ganguly|   6|
+|SC Ganguly|   4|
+|SC Ganguly|   0|
+|SC Ganguly|   0|
+|SC Ganguly|   0|
+|SC Ganguly|   0|
+|SC Ganguly|   4|
+|SC Ganguly|   1|
+|SC Ganguly|   0|
+|SC Ganguly|   0|
++----------+----+
+only showing top 20 rows
+
+>>> bat_runs.show(400,False)
++-----------+----+
+|batsman    |runs|
++-----------+----+
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |4   |
+|SC Ganguly |4   |
+|SC Ganguly |6   |
+|SC Ganguly |4   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |4   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |6   |
+|SC Ganguly |0   |
+|SC Ganguly |4   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |6   |
+|SC Ganguly |4   |
+|SC Ganguly |1   |
+|SC Ganguly |4   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |2   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |2   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |6   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |4   |
+|SC Ganguly |0   |
+|SC Ganguly |6   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |6   |
+|SC Ganguly |2   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |4   |
+|SC Ganguly |0   |
+|SC Ganguly |2   |
+|SC Ganguly |0   |
+|SC Ganguly |4   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |2   |
+|SC Ganguly |4   |
+|SC Ganguly |1   |
+|SC Ganguly |6   |
+|SC Ganguly |4   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |6   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |2   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |2   |
+|SC Ganguly |1   |
+|SC Ganguly |6   |
+|SC Ganguly |2   |
+|SC Ganguly |2   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |4   |
+|SC Ganguly |1   |
+|SC Ganguly |6   |
+|SC Ganguly |0   |
+|SC Ganguly |6   |
+|SC Ganguly |4   |
+|SC Ganguly |1   |
+|SC Ganguly |4   |
+|SC Ganguly |6   |
+|SC Ganguly |6   |
+|SC Ganguly |2   |
+|SC Ganguly |0   |
+|SC Ganguly |2   |
+|SC Ganguly |6   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |2   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |6   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |4   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |2   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |2   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |4   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |4   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |6   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |6   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |1   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|SC Ganguly |0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|4   |
+|BB McCullum|4   |
+|BB McCullum|6   |
+|BB McCullum|4   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|4   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|6   |
+|BB McCullum|0   |
+|BB McCullum|4   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|6   |
+|BB McCullum|4   |
+|BB McCullum|1   |
+|BB McCullum|4   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|2   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|2   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|6   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|4   |
+|BB McCullum|0   |
+|BB McCullum|6   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|6   |
+|BB McCullum|2   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|4   |
+|BB McCullum|0   |
+|BB McCullum|2   |
+|BB McCullum|0   |
+|BB McCullum|4   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|2   |
+|BB McCullum|4   |
+|BB McCullum|1   |
+|BB McCullum|6   |
+|BB McCullum|4   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|6   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|2   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|2   |
+|BB McCullum|1   |
+|BB McCullum|6   |
+|BB McCullum|2   |
+|BB McCullum|2   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|4   |
+|BB McCullum|1   |
+|BB McCullum|6   |
+|BB McCullum|0   |
+|BB McCullum|6   |
+|BB McCullum|4   |
+|BB McCullum|1   |
+|BB McCullum|4   |
+|BB McCullum|6   |
+|BB McCullum|6   |
+|BB McCullum|2   |
+|BB McCullum|0   |
+|BB McCullum|2   |
+|BB McCullum|6   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|2   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|6   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|0   |
+|BB McCullum|4   |
+|BB McCullum|1   |
+|BB McCullum|0   |
+|BB McCullum|1   |
+|BB McCullum|2   |
+|BB McCullum|0   |
++-----------+----+
+only showing top 400 rows
+
+>>> 
+>>> bat.summary().show()
+[Stage 27:>                                                         (0 + 1) / 1                                                                               +-------+---------+
+|summary|  batsman|
++-------+---------+
+|  count|      225|
+|   mean|     null|
+| stddev|     null|
+|    min|AA Noffke|
+|    25%|     null|
+|    50%|     null|
+|    75%|     null|
+|    max|   Z Khan|
++-------+---------+
+
+>>> runs.summary().show()
++-------+-----------------+
+|summary|             runs|
++-------+-----------------+
+|  count|              225|
+|   mean|1.191111111111111|
+| stddev|1.771276555177264|
+|    min|                0|
+|    25%|                0|
+|    50%|                1|
+|    75%|                1|
+|    max|                6|
++-------+-----------------+
+
+>>> bowler.summary().show()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'bowler' is not defined
+>>> bowlers.summary().show()
++-------+---------+
+|summary|   bowler|
++-------+---------+
+|  count|      225|
+|   mean|     null|
+| stddev|     null|
+|    min|AA Noffke|
+|    25%|     null|
+|    50%|     null|
+|    75%|     null|
+|    max|   Z Khan|
++-------+---------+
+
+>>> 
+Traceback (most recent call last):
+  File "/opt/spark/python/pyspark/context.py", line 285, in signal_handler
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+>>> df_new = bat.withColumn("batsman",lit(None))
+>>> df1_new = bowlers.withColumn("bowler",lit(None))
+>>> result = df_new.union(df1_new)
+>>> result.show()
++-------+
+|batsman|
++-------+
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
+|   null|
++-------+
+only showing top 20 rows
+
+>>> result.show(200,False)
++-------+
+|batsman|
++-------+
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
+|null   |
++-------+
+only showing top 200 rows
+
+>>> con_cat = bat.select("batsman",col(runs."runs"))
+  File "<stdin>", line 1
+    con_cat = bat.select("batsman",col(runs."runs"))
+                                            ^
+SyntaxError: invalid syntax
+>>> con_cat = bat.select("batsman",col(runs.runs))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/functions.py", line 106, in col
+    return _invoke_function("col", col)
+  File "/opt/spark/python/pyspark/sql/functions.py", line 58, in _invoke_function
+    return Column(jf(*args))
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1296, in __call__
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1260, in _build_args
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1247, in _get_args
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_collections.py", line 510, in convert
+  File "/opt/spark/python/pyspark/sql/column.py", line 460, in __iter__
+    raise TypeError("Column is not iterable")
+TypeError: Column is not iterable
+>>> con_cat = bat.select("batsman",runs.runs)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/dataframe.py", line 1669, in select
+    jdf = self._jdf.select(self._jcols(*cols))
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1304, in __call__
+  File "/opt/spark/python/pyspark/sql/utils.py", line 117, in deco
+    raise converted from None
+pyspark.sql.utils.AnalysisException: Resolved attribute(s) runs#65L missing from batsman#43 in operator !Project [batsman#43, runs#65L].;
+!Project [batsman#43, runs#65L]
++- Project [batsman#43]
+   +- Generate explode(batter#20), false, [batsman#43]
+      +- Project [col#17.batter AS batter#20, col#17.bowler AS bowler#21, col#17.runs.batter AS runs#19]
+         +- Project [col#17]
+            +- Generate explode(col#14.deliveries), false, [col#17]
+               +- Project [col#14]
+                  +- Generate explode(innings#7.overs), false, [col#14]
+                     +- Project [innings#7]
+                        +- Relation[info#6,innings#7,meta#8] json
+
+>>> con_cat = bat.select(runs.runs)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/dataframe.py", line 1669, in select
+    jdf = self._jdf.select(self._jcols(*cols))
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1304, in __call__
+  File "/opt/spark/python/pyspark/sql/utils.py", line 117, in deco
+    raise converted from None
+pyspark.sql.utils.AnalysisException: Resolved attribute(s) runs#65L missing from batsman#43 in operator !Project [runs#65L].;
+!Project [runs#65L]
++- Project [batsman#43]
+   +- Generate explode(batter#20), false, [batsman#43]
+      +- Project [col#17.batter AS batter#20, col#17.bowler AS bowler#21, col#17.runs.batter AS runs#19]
+         +- Project [col#17]
+            +- Generate explode(col#14.deliveries), false, [col#17]
+               +- Project [col#14]
+                  +- Generate explode(innings#7.overs), false, [col#14]
+                     +- Project [innings#7]
+                        +- Relation[info#6,innings#7,meta#8] json
+
+>>> con_cat = bat.select(col(runs.runs))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/functions.py", line 106, in col
+    return _invoke_function("col", col)
+  File "/opt/spark/python/pyspark/sql/functions.py", line 58, in _invoke_function
+    return Column(jf(*args))
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1296, in __call__
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1260, in _build_args
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1247, in _get_args
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_collections.py", line 510, in convert
+  File "/opt/spark/python/pyspark/sql/column.py", line 460, in __iter__
+    raise TypeError("Column is not iterable")
+TypeError: Column is not iterable
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> runs_total=runs.select("runs",(bat.select("batsman"))
+... "
+  File "<stdin>", line 2
+    "
+    ^
+SyntaxError: EOL while scanning string literal
+>>> runs_total=runs.select("runs",(bat.select("batsman")))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/dataframe.py", line 1669, in select
+    jdf = self._jdf.select(self._jcols(*cols))
+  File "/opt/spark/python/pyspark/sql/dataframe.py", line 1425, in _jcols
+    return self._jseq(cols, _to_java_column)
+  File "/opt/spark/python/pyspark/sql/dataframe.py", line 1412, in _jseq
+    return _to_seq(self.sql_ctx._sc, cols, converter)
+  File "/opt/spark/python/pyspark/sql/column.py", line 61, in _to_seq
+    cols = [converter(c) for c in cols]
+  File "/opt/spark/python/pyspark/sql/column.py", line 61, in <listcomp>
+    cols = [converter(c) for c in cols]
+  File "/opt/spark/python/pyspark/sql/column.py", line 45, in _to_java_column
+    raise TypeError(
+TypeError: Invalid argument, not a string or column: DataFrame[batsman: string] of type <class 'pyspark.sql.dataframe.DataFrame'>. For column literals, use 'lit', 'array', 'struct' or 'create_map' function.
+>>> 
+>>> runs_total=runs.select("runs","(bat.select("batsman"))")
+  File "<stdin>", line 1
+    runs_total=runs.select("runs","(bat.select("batsman"))")
+                                                ^
+SyntaxError: invalid syntax
+>>> runs_total=runs.select("runs",bat.batsman))
+  File "<stdin>", line 1
+    runs_total=runs.select("runs",bat.batsman))
+                                              ^
+SyntaxError: unmatched ')'
+>>> runs_total=runs.select("runs",bat.batsman)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/dataframe.py", line 1669, in select
+    jdf = self._jdf.select(self._jcols(*cols))
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1304, in __call__
+  File "/opt/spark/python/pyspark/sql/utils.py", line 117, in deco
+    raise converted from None
+pyspark.sql.utils.AnalysisException: Resolved attribute(s) batsman#43 missing from runs#65L in operator !Project [runs#65L, batsman#43].;
+!Project [runs#65L, batsman#43]
++- Project [runs#65L]
+   +- Generate explode(runs#19), false, [runs#65L]
+      +- Project [col#17.batter AS batter#20, col#17.bowler AS bowler#21, col#17.runs.batter AS runs#19]
+         +- Project [col#17]
+            +- Generate explode(col#14.deliveries), false, [col#17]
+               +- Project [col#14]
+                  +- Generate explode(innings#7.overs), false, [col#14]
+                     +- Project [innings#7]
+                        +- Relation[info#6,innings#7,meta#8] json
+
+>>> runs_total=runs.select("runs","bat.batsman")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/dataframe.py", line 1669, in select
+    jdf = self._jdf.select(self._jcols(*cols))
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1304, in __call__
+  File "/opt/spark/python/pyspark/sql/utils.py", line 117, in deco
+    raise converted from None
+pyspark.sql.utils.AnalysisException: cannot resolve '`bat.batsman`' given input columns: [runs];
+'Project [runs#65L, 'bat.batsman]
++- Project [runs#65L]
+   +- Generate explode(runs#19), false, [runs#65L]
+      +- Project [col#17.batter AS batter#20, col#17.bowler AS bowler#21, col#17.runs.batter AS runs#19]
+         +- Project [col#17]
+            +- Generate explode(col#14.deliveries), false, [col#17]
+               +- Project [col#14]
+                  +- Generate explode(innings#7.overs), false, [col#14]
+                     +- Project [innings#7]
+                        +- Relation[info#6,innings#7,meta#8] json
+
+>>> runs_total=runs.select(runs.runs)
+>>> runs_total=runs.select(runs.runs,bat.batsman)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/dataframe.py", line 1669, in select
+    jdf = self._jdf.select(self._jcols(*cols))
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1304, in __call__
+  File "/opt/spark/python/pyspark/sql/utils.py", line 117, in deco
+    raise converted from None
+pyspark.sql.utils.AnalysisException: Resolved attribute(s) batsman#43 missing from runs#65L in operator !Project [runs#65L, batsman#43].;
+!Project [runs#65L, batsman#43]
++- Project [runs#65L]
+   +- Generate explode(runs#19), false, [runs#65L]
+      +- Project [col#17.batter AS batter#20, col#17.bowler AS bowler#21, col#17.runs.batter AS runs#19]
+         +- Project [col#17]
+            +- Generate explode(col#14.deliveries), false, [col#17]
+               +- Project [col#14]
+                  +- Generate explode(innings#7.overs), false, [col#14]
+                     +- Project [innings#7]
+                        +- Relation[info#6,innings#7,meta#8] json
+
+>>> bowlers_join = dataSet.select(explode("bowler").alias("bowler"),"batsman","runs")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/dataframe.py", line 1669, in select
+    jdf = self._jdf.select(self._jcols(*cols))
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1304, in __call__
+  File "/opt/spark/python/pyspark/sql/utils.py", line 117, in deco
+    raise converted from None
+pyspark.sql.utils.AnalysisException: cannot resolve '`batsman`' given input columns: [batter, bowler, bowler, runs];
+'Project [bowler#502, 'batsman, runs#19]
++- Generate explode(bowler#21), false, [bowler#502]
+   +- Project [col#17.batter AS batter#20, col#17.bowler AS bowler#21, col#17.runs.batter AS runs#19]
+      +- Project [col#17]
+         +- Generate explode(col#14.deliveries), false, [col#17]
+            +- Project [col#14]
+               +- Generate explode(innings#7.overs), false, [col#14]
+                  +- Project [innings#7]
+                     +- Relation[info#6,innings#7,meta#8] json
+
+>>> bowlers_join = dataSet.select(explode("bowler").alias("bowler"),"batter","runs")
+>>> bowlers_join
+DataFrame[bowler: string, batter: array<string>, runs: array<bigint>]
+>>> bowlers_join.show()
++---------+--------------------+--------------------+
+|   bowler|              batter|                runs|
++---------+--------------------+--------------------+
+|  P Kumar|[SC Ganguly, BB M...|[0, 0, 0, 0, 0, 0...|
+|  P Kumar|[SC Ganguly, BB M...|[0, 0, 0, 0, 0, 0...|
+|  P Kumar|[SC Ganguly, BB M...|[0, 0, 0, 0, 0, 0...|
+|  P Kumar|[SC Ganguly, BB M...|[0, 0, 0, 0, 0, 0...|
+|  P Kumar|[SC Ganguly, BB M...|[0, 0, 0, 0, 0, 0...|
+|  P Kumar|[SC Ganguly, BB M...|[0, 0, 0, 0, 0, 0...|
+|  P Kumar|[SC Ganguly, BB M...|[0, 0, 0, 0, 0, 0...|
+|   Z Khan|[BB McCullum, BB ...|  [0, 4, 4, 6, 4, 0]|
+|   Z Khan|[BB McCullum, BB ...|  [0, 4, 4, 6, 4, 0]|
+|   Z Khan|[BB McCullum, BB ...|  [0, 4, 4, 6, 4, 0]|
+|   Z Khan|[BB McCullum, BB ...|  [0, 4, 4, 6, 4, 0]|
+|   Z Khan|[BB McCullum, BB ...|  [0, 4, 4, 6, 4, 0]|
+|   Z Khan|[BB McCullum, BB ...|  [0, 4, 4, 6, 4, 0]|
+|  P Kumar|[SC Ganguly, SC G...|  [0, 0, 0, 4, 1, 0]|
+|  P Kumar|[SC Ganguly, SC G...|  [0, 0, 0, 4, 1, 0]|
+|  P Kumar|[SC Ganguly, SC G...|  [0, 0, 0, 4, 1, 0]|
+|  P Kumar|[SC Ganguly, SC G...|  [0, 0, 0, 4, 1, 0]|
+|  P Kumar|[SC Ganguly, SC G...|  [0, 0, 0, 4, 1, 0]|
+|  P Kumar|[SC Ganguly, SC G...|  [0, 0, 0, 4, 1, 0]|
+|AA Noffke|[BB McCullum, BB ...|[0, 6, 0, 4, 0, 1...|
++---------+--------------------+--------------------+
+only showing top 20 rows
+
+>>> bowlers_join = dataSet.select("bowler",explode("batter").alias("batsman"),"runs")
+>>> bowlers_join = dataSet.select(explode("bowler").alias("bowler"),"batter","runs")
+>>> batsman_join = dataSet.select("bowler",explode("batter").alias("batsman"),"runs")
+>>> batsman_join.show()
++--------------------+-----------+--------------------+
+|              bowler|    batsman|                runs|
++--------------------+-----------+--------------------+
+|[P Kumar, P Kumar...| SC Ganguly|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[Z Khan, Z Khan, ...|BB McCullum|  [0, 4, 4, 6, 4, 0]|
+|[Z Khan, Z Khan, ...|BB McCullum|  [0, 4, 4, 6, 4, 0]|
+|[Z Khan, Z Khan, ...|BB McCullum|  [0, 4, 4, 6, 4, 0]|
+|[Z Khan, Z Khan, ...|BB McCullum|  [0, 4, 4, 6, 4, 0]|
+|[Z Khan, Z Khan, ...|BB McCullum|  [0, 4, 4, 6, 4, 0]|
+|[Z Khan, Z Khan, ...|BB McCullum|  [0, 4, 4, 6, 4, 0]|
+|[P Kumar, P Kumar...| SC Ganguly|  [0, 0, 0, 4, 1, 0]|
+|[P Kumar, P Kumar...| SC Ganguly|  [0, 0, 0, 4, 1, 0]|
+|[P Kumar, P Kumar...| SC Ganguly|  [0, 0, 0, 4, 1, 0]|
+|[P Kumar, P Kumar...|BB McCullum|  [0, 0, 0, 4, 1, 0]|
+|[P Kumar, P Kumar...|BB McCullum|  [0, 0, 0, 4, 1, 0]|
+|[P Kumar, P Kumar...| SC Ganguly|  [0, 0, 0, 4, 1, 0]|
+|[AA Noffke, AA No...|BB McCullum|[0, 6, 0, 4, 0, 1...|
++--------------------+-----------+--------------------+
+only showing top 20 rows
+
+>>> bat.show()
+
++-----------+
+|    batsman|
++-----------+
+| SC Ganguly|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+| SC Ganguly|
+| SC Ganguly|
+| SC Ganguly|
+|BB McCullum|
+|BB McCullum|
+| SC Ganguly|
+|BB McCullum|
++-----------+
+only showing top 20 rows
+
+>>> 
+>>> ruuns.show()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'ruuns' is not defined
+>>> runs.show()
++----+
+|runs|
++----+
+|   0|
+|   0|
+|   0|
+|   0|
+|   0|
+|   0|
+|   0|
+|   0|
+|   4|
+|   4|
+|   6|
+|   4|
+|   0|
+|   0|
+|   0|
+|   0|
+|   4|
+|   1|
+|   0|
+|   0|
++----+
+only showing top 20 rows
+
+>>> bowler.show()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'bowler' is not defined
+>>> bowlers.show()
++---------+
+|   bowler|
++---------+
+|  P Kumar|
+|  P Kumar|
+|  P Kumar|
+|  P Kumar|
+|  P Kumar|
+|  P Kumar|
+|  P Kumar|
+|   Z Khan|
+|   Z Khan|
+|   Z Khan|
+|   Z Khan|
+|   Z Khan|
+|   Z Khan|
+|  P Kumar|
+|  P Kumar|
+|  P Kumar|
+|  P Kumar|
+|  P Kumar|
+|  P Kumar|
+|AA Noffke|
++---------+
+only showing top 20 rows
+
+>>> join_var = bat.join(bowlers).join(runs)
+>>> join_var.show()
++----------+-------+----+
+|   batsman| bowler|runs|
++----------+-------+----+
+|SC Ganguly|P Kumar|   0|
+|SC Ganguly|P Kumar|   0|
+|SC Ganguly|P Kumar|   0|
+|SC Ganguly|P Kumar|   0|
+|SC Ganguly|P Kumar|   0|
+|SC Ganguly|P Kumar|   0|
+|SC Ganguly|P Kumar|   0|
+|SC Ganguly|P Kumar|   0|
+|SC Ganguly|P Kumar|   4|
+|SC Ganguly|P Kumar|   4|
+|SC Ganguly|P Kumar|   6|
+|SC Ganguly|P Kumar|   4|
+|SC Ganguly|P Kumar|   0|
+|SC Ganguly|P Kumar|   0|
+|SC Ganguly|P Kumar|   0|
+|SC Ganguly|P Kumar|   0|
+|SC Ganguly|P Kumar|   4|
+|SC Ganguly|P Kumar|   1|
+|SC Ganguly|P Kumar|   0|
+|SC Ganguly|P Kumar|   0|
++----------+-------+----+
+only showing top 20 rows
+
+>>> join_var.show(400,False)
++----------+-------+----+
+|batsman   |bowler |runs|
++----------+-------+----+
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|6   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|4   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|0   |
+|SC Ganguly|P Kumar|1   |
+|SC Ganguly|P Kumar|2   |
+|SC Ganguly|P Kumar|0   |
++----------+-------+----+
+only showing top 400 rows
+
+>>> 
+>>> bowlers_join.summary().show()
++-------+---------+
+|summary|   bowler|
++-------+---------+
+|  count|      225|
+|   mean|     null|
+| stddev|     null|
+|    min|AA Noffke|
+|    25%|     null|
+|    50%|     null|
+|    75%|     null|
+|    max|   Z Khan|
++-------+---------+
+
+>>> batsmans_join.summary().show()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'batsmans_join' is not defined
+>>> batsman_join.summary().show()
++-------+---------+
+|summary|  batsman|
++-------+---------+
+|  count|      225|
+|   mean|     null|
+| stddev|     null|
+|    min|AA Noffke|
+|    25%|     null|
+|    50%|     null|
+|    75%|     null|
+|    max|   Z Khan|
++-------+---------+
+
+>>> empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"inner")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'empDF' is not defined
+>>> join_var =  batsman_join.join(batsman_join,batsman_join.runs == bowlers_join.runs,"inner")
+>>> join_var.show()
++--------------------+-----------+--------------------+--------------------+-----------+--------------------+
+|              bowler|    batsman|                runs|              bowler|    batsman|                runs|
++--------------------+-----------+--------------------+--------------------+-----------+--------------------+
+|[P Kumar, P Kumar...| SC Ganguly|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...| SC Ganguly|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...| SC Ganguly|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...| SC Ganguly|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...| SC Ganguly|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...| SC Ganguly|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...| SC Ganguly|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...| SC Ganguly|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...| SC Ganguly|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
+|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|[P Kumar, P Kumar...|BB McCullum|[0, 0, 0, 0, 0, 0...|
++--------------------+-----------+--------------------+--------------------+-----------+--------------------+
+only showing top 20 rows
+
+>>> join_var.summary().show()
+[Stage 53:>                                                         (0 + 1) / 1                                                                               +-------+---------+---------+
+|summary|  batsman|  batsman|
++-------+---------+---------+
+|  count|     1437|     1437|
+|   mean|     null|     null|
+| stddev|     null|     null|
+|    min|AA Noffke|AA Noffke|
+|    25%|     null|     null|
+|    50%|     null|     null|
+|    75%|     null|     null|
+|    max|   Z Khan|   Z Khan|
++-------+---------+---------+
+
+>>> join_var =  batsman_join.withColumn("newCol",col(bat.runs))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/dataframe.py", line 1643, in __getattr__
+    raise AttributeError(
+AttributeError: 'DataFrame' object has no attribute 'runs'
+>>> join_var =  batsman_join.withColumn("newCol",col(bat.run))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/dataframe.py", line 1643, in __getattr__
+    raise AttributeError(
+AttributeError: 'DataFrame' object has no attribute 'run'
+>>> bat.show()
++-----------+
+|    batsman|
++-----------+
+| SC Ganguly|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+|BB McCullum|
+| SC Ganguly|
+| SC Ganguly|
+| SC Ganguly|
+|BB McCullum|
+|BB McCullum|
+| SC Ganguly|
+|BB McCullum|
++-----------+
+only showing top 20 rows
+
+>>> run.show()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'run' is not defined
+>>> runs.show()
++----+
+|runs|
++----+
+|   0|
+|   0|
+|   0|
+|   0|
+|   0|
+|   0|
+|   0|
+|   0|
+|   4|
+|   4|
+|   6|
+|   4|
+|   0|
+|   0|
+|   0|
+|   0|
+|   4|
+|   1|
+|   0|
+|   0|
++----+
+only showing top 20 rows
+
+>>> join_var =  batsman_join.withColumn("newCol",col(runs.runs))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/functions.py", line 106, in col
+    return _invoke_function("col", col)
+  File "/opt/spark/python/pyspark/sql/functions.py", line 58, in _invoke_function
+    return Column(jf(*args))
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1296, in __call__
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1260, in _build_args
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1247, in _get_args
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_collections.py", line 510, in convert
+  File "/opt/spark/python/pyspark/sql/column.py", line 460, in __iter__
+    raise TypeError("Column is not iterable")
+TypeError: Column is not iterable
+>>> join_var =  batsman_join.withColumn("newCol",col(batsman.runs))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'batsman' is not defined
+>>> join_var =  batsman_join.withColumn("newCol",col(batsman_join.runs))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/functions.py", line 106, in col
+    return _invoke_function("col", col)
+  File "/opt/spark/python/pyspark/sql/functions.py", line 58, in _invoke_function
+    return Column(jf(*args))
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1296, in __call__
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1260, in _build_args
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1247, in _get_args
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_collections.py", line 510, in convert
+  File "/opt/spark/python/pyspark/sql/column.py", line 460, in __iter__
+    raise TypeError("Column is not iterable")
+TypeError: Column is not iterable
+>>> 
+>>> 
+>>> 
+>>> 
+>>> from pyspark.sql.functions import monotonically_increasing_id, row_number
+>>> from pyspark.sql.window import Window
+>>> 
+>>> minDf = sc.parallelize(bat)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/context.py", line 566, in parallelize
+    jrdd = self._serialize_to_jvm(c, serializer, reader_func, createRDDServer)
+  File "/opt/spark/python/pyspark/context.py", line 603, in _serialize_to_jvm
+    serializer.dump_stream(data, tempFile)
+  File "/opt/spark/python/pyspark/serializers.py", line 211, in dump_stream
+    self.serializer.dump_stream(self._batched(iterator), stream)
+  File "/opt/spark/python/pyspark/serializers.py", line 133, in dump_stream
+    self._write_with_length(obj, stream)
+  File "/opt/spark/python/pyspark/serializers.py", line 143, in _write_with_length
+    serialized = self.dumps(obj)
+  File "/opt/spark/python/pyspark/serializers.py", line 427, in dumps
+    return pickle.dumps(obj, pickle_protocol)
+TypeError: cannot pickle '_thread.RLock' object
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> bat_rdd = bat.rdd()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'RDD' object is not callable
+>>> bat_rdd = bat.rdd
+>>> print(bat_rdd.collect())
+[Row(batsman='SC Ganguly'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='SC Ganguly'), Row(batsman='SC Ganguly'), Row(batsman='SC Ganguly'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='SC Ganguly'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='SC Ganguly'), Row(batsman='SC Ganguly'), Row(batsman='SC Ganguly'), Row(batsman='BB McCullum'), Row(batsman='SC Ganguly'), Row(batsman='SC Ganguly'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='SC Ganguly'), Row(batsman='BB McCullum'), Row(batsman='SC Ganguly'), Row(batsman='RT Ponting'), Row(batsman='RT Ponting'), Row(batsman='RT Ponting'), Row(batsman='RT Ponting'), Row(batsman='BB McCullum'), Row(batsman='RT Ponting'), Row(batsman='BB McCullum'), Row(batsman='RT Ponting'), Row(batsman='RT Ponting'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='RT Ponting'), Row(batsman='BB McCullum'), Row(batsman='RT Ponting'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='RT Ponting'), Row(batsman='BB McCullum'), Row(batsman='RT Ponting'), Row(batsman='BB McCullum'), Row(batsman='RT Ponting'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='RT Ponting'), Row(batsman='RT Ponting'), Row(batsman='RT Ponting'), Row(batsman='RT Ponting'), Row(batsman='RT Ponting'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='RT Ponting'), Row(batsman='RT Ponting'), Row(batsman='RT Ponting'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='DJ Hussey'), Row(batsman='DJ Hussey'), Row(batsman='BB McCullum'), Row(batsman='DJ Hussey'), Row(batsman='BB McCullum'), Row(batsman='DJ Hussey'), Row(batsman='DJ Hussey'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='DJ Hussey'), Row(batsman='BB McCullum'), Row(batsman='DJ Hussey'), Row(batsman='DJ Hussey'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='DJ Hussey'), Row(batsman='BB McCullum'), Row(batsman='DJ Hussey'), Row(batsman='DJ Hussey'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='DJ Hussey'), Row(batsman='BB McCullum'), Row(batsman='Mohammad Hafeez'), Row(batsman='Mohammad Hafeez'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='Mohammad Hafeez'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='BB McCullum'), Row(batsman='R Dravid'), Row(batsman='W Jaffer'), Row(batsman='W Jaffer'), Row(batsman='W Jaffer'), Row(batsman='R Dravid'), Row(batsman='W Jaffer'), Row(batsman='W Jaffer'), Row(batsman='R Dravid'), Row(batsman='V Kohli'), Row(batsman='V Kohli'), Row(batsman='V Kohli'), Row(batsman='W Jaffer'), Row(batsman='W Jaffer'), Row(batsman='V Kohli'), Row(batsman='V Kohli'), Row(batsman='JH Kallis'), Row(batsman='W Jaffer'), Row(batsman='W Jaffer'), Row(batsman='W Jaffer'), Row(batsman='W Jaffer'), Row(batsman='W Jaffer'), Row(batsman='W Jaffer'), Row(batsman='JH Kallis'), Row(batsman='JH Kallis'), Row(batsman='W Jaffer'), Row(batsman='W Jaffer'), Row(batsman='JH Kallis'), Row(batsman='W Jaffer'), Row(batsman='JH Kallis'), Row(batsman='JH Kallis'), Row(batsman='JH Kallis'), Row(batsman='CL White'), Row(batsman='W Jaffer'), Row(batsman='W Jaffer'), Row(batsman='MV Boucher'), Row(batsman='MV Boucher'), Row(batsman='CL White'), Row(batsman='MV Boucher'), Row(batsman='CL White'), Row(batsman='CL White'), Row(batsman='CL White'), Row(batsman='MV Boucher'), Row(batsman='MV Boucher'), Row(batsman='MV Boucher'), Row(batsman='MV Boucher'), Row(batsman='MV Boucher'), Row(batsman='CL White'), Row(batsman='MV Boucher'), Row(batsman='CL White'), Row(batsman='MV Boucher'), Row(batsman='MV Boucher'), Row(batsman='CL White'), Row(batsman='B Akhil'), Row(batsman='B Akhil'), Row(batsman='AA Noffke'), Row(batsman='AA Noffke'), Row(batsman='AA Noffke'), Row(batsman='AA Noffke'), Row(batsman='CL White'), Row(batsman='CL White'), Row(batsman='AA Noffke'), Row(batsman='P Kumar'), Row(batsman='P Kumar'), Row(batsman='P Kumar'), Row(batsman='P Kumar'), Row(batsman='AA Noffke'), Row(batsman='AA Noffke'), Row(batsman='AA Noffke'), Row(batsman='AA Noffke'), Row(batsman='AA Noffke'), Row(batsman='AA Noffke'), Row(batsman='P Kumar'), Row(batsman='P Kumar'), Row(batsman='AA Noffke'), Row(batsman='Z Khan'), Row(batsman='Z Khan'), Row(batsman='Z Khan'), Row(batsman='P Kumar'), Row(batsman='P Kumar'), Row(batsman='P Kumar'), Row(batsman='P Kumar'), Row(batsman='Z Khan'), Row(batsman='P Kumar'), Row(batsman='Z Khan'), Row(batsman='Z Khan'), Row(batsman='Z Khan'), Row(batsman='Z Khan'), Row(batsman='SB Joshi'), Row(batsman='P Kumar'), Row(batsman='P Kumar'), Row(batsman='P Kumar'), Row(batsman='P Kumar'), Row(batsman='SB Joshi'), Row(batsman='SB Joshi'), Row(batsman='SB Joshi'), Row(batsman='SB Joshi'), Row(batsman='P Kumar'), Row(batsman='SB Joshi'), Row(batsman='P Kumar'), Row(batsman='SB Joshi'), Row(batsman='SB Joshi')]
+>>> bowler_rdd = bowlers.rdd
+>>> print(bowler_rdd.collect())
+[Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='SB Joshi'), Row(bowler='CL White'), Row(bowler='CL White'), Row(bowler='CL White'), Row(bowler='CL White'), Row(bowler='CL White'), Row(bowler='CL White'), Row(bowler='CL White'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='Z Khan'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='AA Noffke'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='JH Kallis'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='P Kumar'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Dinda'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='AB Agarkar'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='LR Shukla'), Row(bowler='LR Shukla'), Row(bowler='LR Shukla'), Row(bowler='LR Shukla'), Row(bowler='LR Shukla'), Row(bowler='LR Shukla'), Row(bowler='LR Shukla'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='SC Ganguly'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='I Sharma'), Row(bowler='LR Shukla'), Row(bowler='LR Shukla')]
+>>> bat_rdd=bat_rdd.withColumn('row_index', row_number().over(Window.orderBy(monotonically_increasing_id())))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'RDD' object has no attribute 'withColumn'
+>>> bat_rdd=bat.withColumn('row_index', row_number().over(Window.orderBy(monotonically_increasing_id())))
+>>> bowler_rdd=bowlers.withColumn('row_index', row_number().over(Window.orderBy(monotonically_increasing_id())))
+>>> total = bowler_rdd.join(bat_rdd, on=["row_index"]).drop("row_index")
+>>> total.show()
+21/08/27 13:14:44 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:14:44 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
++---------+-----------+
+|   bowler|    batsman|
++---------+-----------+
+|  P Kumar| SC Ganguly|
+|  P Kumar|BB McCullum|
+|  P Kumar|BB McCullum|
+|  P Kumar|BB McCullum|
+|  P Kumar|BB McCullum|
+|  P Kumar|BB McCullum|
+|  P Kumar|BB McCullum|
+|   Z Khan|BB McCullum|
+|   Z Khan|BB McCullum|
+|   Z Khan|BB McCullum|
+|   Z Khan|BB McCullum|
+|   Z Khan|BB McCullum|
+|   Z Khan|BB McCullum|
+|  P Kumar| SC Ganguly|
+|  P Kumar| SC Ganguly|
+|  P Kumar| SC Ganguly|
+|  P Kumar|BB McCullum|
+|  P Kumar|BB McCullum|
+|  P Kumar| SC Ganguly|
+|AA Noffke|BB McCullum|
++---------+-----------+
+only showing top 20 rows
+
+>>> total.summary().show()
+21/08/27 13:15:03 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:15:03 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
++-------+---------+---------+
+|summary|   bowler|  batsman|
++-------+---------+---------+
+|  count|      225|      225|
+|   mean|     null|     null|
+| stddev|     null|     null|
+|    min|AA Noffke|AA Noffke|
+|    25%|     null|     null|
+|    50%|     null|     null|
+|    75%|     null|     null|
+|    max|   Z Khan|   Z Khan|
++-------+---------+---------+
+
+>>> runs_rdd=runs.withColumn('row_index', row_number().over(Window.orderBy(monotonically_increasing_id())))
+>>> total=total.withColumn('row_index', row_number().over(Window.orderBy(monotonically_increasing_id())))
+>>> total = total.join(runs_rdd, on=["row_index"]).drop("row_index")
+>>> total.summary().show()
+21/08/27 13:17:51 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:17:51 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:17:51 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:17:51 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+[Stage 72:>                                                         (0 + 1) / 1                                                                               +-------+---------+---------+-----------------+
+|summary|   bowler|  batsman|             runs|
++-------+---------+---------+-----------------+
+|  count|      225|      225|              225|
+|   mean|     null|     null|1.191111111111111|
+| stddev|     null|     null|1.771276555177264|
+|    min|AA Noffke|AA Noffke|                0|
+|    25%|     null|     null|                0|
+|    50%|     null|     null|                1|
+|    75%|     null|     null|                1|
+|    max|   Z Khan|   Z Khan|                6|
++-------+---------+---------+-----------------+
+
+>>> total.show(400,False)
+21/08/27 13:18:13 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:18:13 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:18:13 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:18:13 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
++----------+---------------+----+
+|bowler    |batsman        |runs|
++----------+---------------+----+
+|P Kumar   |SC Ganguly     |0   |
+|P Kumar   |BB McCullum    |0   |
+|P Kumar   |BB McCullum    |0   |
+|P Kumar   |BB McCullum    |0   |
+|P Kumar   |BB McCullum    |0   |
+|P Kumar   |BB McCullum    |0   |
+|P Kumar   |BB McCullum    |0   |
+|Z Khan    |BB McCullum    |0   |
+|Z Khan    |BB McCullum    |4   |
+|Z Khan    |BB McCullum    |4   |
+|Z Khan    |BB McCullum    |6   |
+|Z Khan    |BB McCullum    |4   |
+|Z Khan    |BB McCullum    |0   |
+|P Kumar   |SC Ganguly     |0   |
+|P Kumar   |SC Ganguly     |0   |
+|P Kumar   |SC Ganguly     |0   |
+|P Kumar   |BB McCullum    |4   |
+|P Kumar   |BB McCullum    |1   |
+|P Kumar   |SC Ganguly     |0   |
+|AA Noffke |BB McCullum    |0   |
+|AA Noffke |BB McCullum    |6   |
+|AA Noffke |BB McCullum    |0   |
+|AA Noffke |SC Ganguly     |4   |
+|AA Noffke |SC Ganguly     |0   |
+|AA Noffke |SC Ganguly     |1   |
+|AA Noffke |BB McCullum    |6   |
+|P Kumar   |SC Ganguly     |4   |
+|P Kumar   |SC Ganguly     |1   |
+|P Kumar   |BB McCullum    |4   |
+|P Kumar   |BB McCullum    |0   |
+|P Kumar   |BB McCullum    |1   |
+|P Kumar   |SC Ganguly     |0   |
+|Z Khan    |BB McCullum    |1   |
+|Z Khan    |SC Ganguly     |0   |
+|Z Khan    |RT Ponting     |0   |
+|Z Khan    |RT Ponting     |0   |
+|Z Khan    |RT Ponting     |0   |
+|Z Khan    |RT Ponting     |0   |
+|AA Noffke |BB McCullum    |1   |
+|AA Noffke |RT Ponting     |1   |
+|AA Noffke |BB McCullum    |1   |
+|AA Noffke |RT Ponting     |2   |
+|AA Noffke |RT Ponting     |1   |
+|AA Noffke |BB McCullum    |1   |
+|Z Khan    |BB McCullum    |0   |
+|Z Khan    |BB McCullum    |1   |
+|Z Khan    |RT Ponting     |1   |
+|Z Khan    |BB McCullum    |1   |
+|Z Khan    |RT Ponting     |1   |
+|Z Khan    |BB McCullum    |1   |
+|JH Kallis |BB McCullum    |0   |
+|JH Kallis |BB McCullum    |0   |
+|JH Kallis |BB McCullum    |0   |
+|JH Kallis |BB McCullum    |1   |
+|JH Kallis |RT Ponting     |1   |
+|JH Kallis |BB McCullum    |2   |
+|SB Joshi  |RT Ponting     |1   |
+|SB Joshi  |BB McCullum    |1   |
+|SB Joshi  |RT Ponting     |1   |
+|SB Joshi  |BB McCullum    |0   |
+|SB Joshi  |BB McCullum    |6   |
+|SB Joshi  |BB McCullum    |1   |
+|JH Kallis |BB McCullum    |1   |
+|JH Kallis |RT Ponting     |4   |
+|JH Kallis |RT Ponting     |0   |
+|JH Kallis |RT Ponting     |6   |
+|JH Kallis |RT Ponting     |0   |
+|JH Kallis |RT Ponting     |0   |
+|SB Joshi  |BB McCullum    |0   |
+|SB Joshi  |BB McCullum    |6   |
+|SB Joshi  |BB McCullum    |2   |
+|SB Joshi  |BB McCullum    |1   |
+|SB Joshi  |RT Ponting     |0   |
+|SB Joshi  |RT Ponting     |1   |
+|JH Kallis |RT Ponting     |0   |
+|JH Kallis |BB McCullum    |4   |
+|JH Kallis |BB McCullum    |0   |
+|JH Kallis |BB McCullum    |2   |
+|JH Kallis |BB McCullum    |0   |
+|JH Kallis |BB McCullum    |4   |
+|JH Kallis |BB McCullum    |1   |
+|SB Joshi  |BB McCullum    |1   |
+|SB Joshi  |DJ Hussey      |0   |
+|SB Joshi  |DJ Hussey      |1   |
+|SB Joshi  |BB McCullum    |1   |
+|SB Joshi  |DJ Hussey      |1   |
+|SB Joshi  |BB McCullum    |2   |
+|CL White  |DJ Hussey      |4   |
+|CL White  |DJ Hussey      |1   |
+|CL White  |BB McCullum    |6   |
+|CL White  |BB McCullum    |4   |
+|CL White  |BB McCullum    |0   |
+|CL White  |DJ Hussey      |1   |
+|CL White  |BB McCullum    |6   |
+|AA Noffke |DJ Hussey      |0   |
+|AA Noffke |DJ Hussey      |1   |
+|AA Noffke |BB McCullum    |2   |
+|AA Noffke |BB McCullum    |0   |
+|AA Noffke |BB McCullum    |1   |
+|AA Noffke |DJ Hussey      |0   |
+|Z Khan    |BB McCullum    |1   |
+|Z Khan    |DJ Hussey      |2   |
+|Z Khan    |DJ Hussey      |1   |
+|Z Khan    |BB McCullum    |6   |
+|Z Khan    |BB McCullum    |2   |
+|Z Khan    |BB McCullum    |2   |
+|AA Noffke |DJ Hussey      |0   |
+|AA Noffke |BB McCullum    |1   |
+|AA Noffke |Mohammad Hafeez|0   |
+|AA Noffke |Mohammad Hafeez|1   |
+|AA Noffke |BB McCullum    |4   |
+|AA Noffke |BB McCullum    |1   |
+|JH Kallis |BB McCullum    |6   |
+|JH Kallis |BB McCullum    |0   |
+|JH Kallis |BB McCullum    |6   |
+|JH Kallis |BB McCullum    |4   |
+|JH Kallis |BB McCullum    |1   |
+|JH Kallis |Mohammad Hafeez|4   |
+|P Kumar   |BB McCullum    |6   |
+|P Kumar   |BB McCullum    |6   |
+|P Kumar   |BB McCullum    |2   |
+|P Kumar   |BB McCullum    |0   |
+|P Kumar   |BB McCullum    |2   |
+|P Kumar   |BB McCullum    |6   |
+|AB Dinda  |R Dravid       |1   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |W Jaffer       |1   |
+|AB Dinda  |R Dravid       |1   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |W Jaffer       |0   |
+|I Sharma  |R Dravid       |0   |
+|I Sharma  |V Kohli        |0   |
+|I Sharma  |V Kohli        |0   |
+|I Sharma  |V Kohli        |1   |
+|I Sharma  |W Jaffer       |0   |
+|I Sharma  |W Jaffer       |0   |
+|AB Dinda  |V Kohli        |0   |
+|AB Dinda  |V Kohli        |0   |
+|AB Dinda  |JH Kallis      |1   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |W Jaffer       |1   |
+|I Sharma  |W Jaffer       |2   |
+|I Sharma  |W Jaffer       |1   |
+|I Sharma  |JH Kallis      |0   |
+|I Sharma  |JH Kallis      |0   |
+|I Sharma  |W Jaffer       |0   |
+|I Sharma  |W Jaffer       |0   |
+|AB Agarkar|JH Kallis      |1   |
+|AB Agarkar|W Jaffer       |1   |
+|AB Agarkar|JH Kallis      |0   |
+|AB Agarkar|JH Kallis      |6   |
+|AB Agarkar|JH Kallis      |0   |
+|AB Agarkar|CL White       |0   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |MV Boucher     |0   |
+|AB Dinda  |MV Boucher     |1   |
+|AB Dinda  |CL White       |1   |
+|AB Dinda  |MV Boucher     |0   |
+|AB Agarkar|CL White       |0   |
+|AB Agarkar|CL White       |0   |
+|AB Agarkar|CL White       |1   |
+|AB Agarkar|MV Boucher     |0   |
+|AB Agarkar|MV Boucher     |0   |
+|AB Agarkar|MV Boucher     |0   |
+|AB Agarkar|MV Boucher     |0   |
+|AB Agarkar|MV Boucher     |4   |
+|SC Ganguly|CL White       |1   |
+|SC Ganguly|MV Boucher     |0   |
+|SC Ganguly|CL White       |1   |
+|SC Ganguly|MV Boucher     |2   |
+|SC Ganguly|MV Boucher     |0   |
+|SC Ganguly|CL White       |0   |
+|AB Agarkar|B Akhil        |0   |
+|AB Agarkar|B Akhil        |0   |
+|AB Agarkar|AA Noffke      |0   |
+|AB Agarkar|AA Noffke      |0   |
+|AB Agarkar|AA Noffke      |0   |
+|AB Agarkar|AA Noffke      |1   |
+|AB Agarkar|CL White       |2   |
+|AB Agarkar|CL White       |0   |
+|SC Ganguly|AA Noffke      |1   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|AA Noffke      |4   |
+|SC Ganguly|AA Noffke      |1   |
+|AB Agarkar|AA Noffke      |0   |
+|AB Agarkar|AA Noffke      |0   |
+|AB Agarkar|AA Noffke      |0   |
+|AB Agarkar|AA Noffke      |1   |
+|AB Agarkar|P Kumar        |4   |
+|AB Agarkar|P Kumar        |0   |
+|SC Ganguly|AA Noffke      |1   |
+|SC Ganguly|Z Khan         |0   |
+|SC Ganguly|Z Khan         |0   |
+|SC Ganguly|Z Khan         |1   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|P Kumar        |1   |
+|LR Shukla |P Kumar        |6   |
+|LR Shukla |P Kumar        |0   |
+|LR Shukla |Z Khan         |1   |
+|LR Shukla |P Kumar        |1   |
+|LR Shukla |Z Khan         |0   |
+|LR Shukla |Z Khan         |0   |
+|LR Shukla |Z Khan         |1   |
+|SC Ganguly|Z Khan         |0   |
+|SC Ganguly|SB Joshi       |1   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|P Kumar        |6   |
+|I Sharma  |SB Joshi       |0   |
+|I Sharma  |SB Joshi       |0   |
+|I Sharma  |SB Joshi       |0   |
+|I Sharma  |SB Joshi       |1   |
+|I Sharma  |P Kumar        |0   |
+|I Sharma  |SB Joshi       |1   |
+|I Sharma  |P Kumar        |0   |
+|LR Shukla |SB Joshi       |0   |
+|LR Shukla |SB Joshi       |0   |
++----------+---------------+----+
+
+>>> statDF =total.groupby(‘batsman’,’bowler’).sum(‘runs’).orderBy(‘batsman’)
+  File "<stdin>", line 1
+    statDF =total.groupby(‘batsman’,’bowler’).sum(‘runs’).orderBy(‘batsman’)
+                                  ^
+SyntaxError: invalid character in identifier
+>>> statDF =total.groupby("batsman","bowler").sum("runs").orderBy("batsman")
+>>> statDf.show()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'statDf' is not defined
+>>> statDF.show()
+21/08/27 13:25:05 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:25:05 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:25:05 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:25:05 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
++-----------+----------+---------+
+|    batsman|    bowler|sum(runs)|
++-----------+----------+---------+
+|  AA Noffke|AB Agarkar|        2|
+|  AA Noffke|SC Ganguly|        7|
+|    B Akhil|AB Agarkar|        0|
+|BB McCullum|    Z Khan|       33|
+|BB McCullum| AA Noffke|       24|
+|BB McCullum| JH Kallis|       32|
+|BB McCullum|  SB Joshi|       21|
+|BB McCullum|  CL White|       16|
+|BB McCullum|   P Kumar|       32|
+|   CL White|SC Ganguly|        2|
+|   CL White|  AB Dinda|        1|
+|   CL White|AB Agarkar|        3|
+|  DJ Hussey|  CL White|        6|
+|  DJ Hussey| AA Noffke|        1|
+|  DJ Hussey|  SB Joshi|        2|
+|  DJ Hussey|    Z Khan|        3|
+|  JH Kallis|  I Sharma|        0|
+|  JH Kallis|  AB Dinda|        1|
+|  JH Kallis|AB Agarkar|        7|
+| MV Boucher|AB Agarkar|        4|
++-----------+----------+---------+
+only showing top 20 rows
+
+>>> 
+Traceback (most recent call last):
+  File "/opt/spark/python/pyspark/context.py", line 285, in signal_handler
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+>>> statmaxDF = statDF.groupby("batsman","bowler").agg({"sum(runs)":"max"})
+>>> statmaxDF.show()
+21/08/27 13:31:45 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:31:45 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:31:45 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:31:45 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
++---------------+---------+--------------+
+|        batsman|   bowler|max(sum(runs))|
++---------------+---------+--------------+
+|     SC Ganguly|  P Kumar|             5|
+|    BB McCullum|  P Kumar|            32|
+|    BB McCullum|   Z Khan|            33|
+|    BB McCullum|AA Noffke|            24|
+|     SC Ganguly|AA Noffke|             5|
+|     SC Ganguly|   Z Khan|             0|
+|     RT Ponting|   Z Khan|             2|
+|     RT Ponting|AA Noffke|             4|
+|    BB McCullum|JH Kallis|            32|
+|     RT Ponting|JH Kallis|            11|
+|     RT Ponting| SB Joshi|             3|
+|    BB McCullum| SB Joshi|            21|
+|      DJ Hussey| SB Joshi|             2|
+|      DJ Hussey| CL White|             6|
+|    BB McCullum| CL White|            16|
+|      DJ Hussey|AA Noffke|             1|
+|      DJ Hussey|   Z Khan|             3|
+|Mohammad Hafeez|AA Noffke|             1|
+|Mohammad Hafeez|JH Kallis|             4|
+|       R Dravid| AB Dinda|             2|
++---------------+---------+--------------+
+only showing top 20 rows
+
+>>> stat_max = statmaxDF.groupBy("batsman").max("max(sum(runs))") 
+>>> stat_max.show()
+21/08/27 13:37:45 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:37:45 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:37:45 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 13:37:46 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
++---------------+-------------------+
+|        batsman|max(max(sum(runs)))|
++---------------+-------------------+
+|     SC Ganguly|                  5|
+|    BB McCullum|                 33|
+|     RT Ponting|                 11|
+|      DJ Hussey|                  6|
+|Mohammad Hafeez|                  4|
+|       R Dravid|                  2|
+|       W Jaffer|                  3|
+|        V Kohli|                  1|
+|      JH Kallis|                  7|
+|       CL White|                  3|
+|     MV Boucher|                  4|
+|        B Akhil|                  0|
+|      AA Noffke|                  7|
+|        P Kumar|                  7|
+|         Z Khan|                  2|
+|       SB Joshi|                  2|
++---------------+-------------------+
+
+>>> stat_max_1 = statmaxDF.select("bowler").groupBy("batsman").max("max(sum(runs))") 
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/spark/python/pyspark/sql/group.py", line 41, in _api
+    jdf = getattr(self._jgd, name)(_to_seq(self.sql_ctx._sc, cols))
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1304, in __call__
+  File "/opt/spark/python/pyspark/sql/utils.py", line 117, in deco
+    raise converted from None
+pyspark.sql.utils.AnalysisException: Cannot resolve column name "max(sum(runs))" among (bowler)
+>>> statmaxDF.show()
+21/08/27 14:04:26 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 14:04:26 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 14:04:26 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 14:04:26 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
++---------------+---------+--------------+
+|        batsman|   bowler|max(sum(runs))|
++---------------+---------+--------------+
+|     SC Ganguly|  P Kumar|             5|
+|    BB McCullum|  P Kumar|            32|
+|    BB McCullum|   Z Khan|            33|
+|    BB McCullum|AA Noffke|            24|
+|     SC Ganguly|AA Noffke|             5|
+|     SC Ganguly|   Z Khan|             0|
+|     RT Ponting|   Z Khan|             2|
+|     RT Ponting|AA Noffke|             4|
+|    BB McCullum|JH Kallis|            32|
+|     RT Ponting|JH Kallis|            11|
+|     RT Ponting| SB Joshi|             3|
+|    BB McCullum| SB Joshi|            21|
+|      DJ Hussey| SB Joshi|             2|
+|      DJ Hussey| CL White|             6|
+|    BB McCullum| CL White|            16|
+|      DJ Hussey|AA Noffke|             1|
+|      DJ Hussey|   Z Khan|             3|
+|Mohammad Hafeez|AA Noffke|             1|
+|Mohammad Hafeez|JH Kallis|             4|
+|       R Dravid| AB Dinda|             2|
++---------------+---------+--------------+
+only showing top 20 rows
+
+>>> stat_max_1 = statmaxDF.select("*").groupBy("batsman").max("max(sum(runs))") 
+>>> stat_max_1.show()
+21/08/27 14:05:57 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 14:05:57 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 14:05:57 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 14:05:57 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+[Stage 108:>                                                        (0 + 1) / 1                                                                               +---------------+-------------------+
+|        batsman|max(max(sum(runs)))|
++---------------+-------------------+
+|     SC Ganguly|                  5|
+|    BB McCullum|                 33|
+|     RT Ponting|                 11|
+|      DJ Hussey|                  6|
+|Mohammad Hafeez|                  4|
+|       R Dravid|                  2|
+|       W Jaffer|                  3|
+|        V Kohli|                  1|
+|      JH Kallis|                  7|
+|       CL White|                  3|
+|     MV Boucher|                  4|
+|        B Akhil|                  0|
+|      AA Noffke|                  7|
+|        P Kumar|                  7|
+|         Z Khan|                  2|
+|       SB Joshi|                  2|
++---------------+-------------------+
+
+>>> stat_max_1 = statmaxDF.groupBy("batsman","bowler").max("max(sum(runs))")
+>>> stat_max_1.show()
+21/08/27 14:07:27 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 14:07:27 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 14:07:27 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+21/08/27 14:07:27 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
++---------------+---------+-------------------+
+|        batsman|   bowler|max(max(sum(runs)))|
++---------------+---------+-------------------+
+|     SC Ganguly|  P Kumar|                  5|
+|    BB McCullum|  P Kumar|                 32|
+|    BB McCullum|   Z Khan|                 33|
+|    BB McCullum|AA Noffke|                 24|
+|     SC Ganguly|AA Noffke|                  5|
+|     SC Ganguly|   Z Khan|                  0|
+|     RT Ponting|   Z Khan|                  2|
+|     RT Ponting|AA Noffke|                  4|
+|    BB McCullum|JH Kallis|                 32|
+|     RT Ponting|JH Kallis|                 11|
+|     RT Ponting| SB Joshi|                  3|
+|    BB McCullum| SB Joshi|                 21|
+|      DJ Hussey| SB Joshi|                  2|
+|      DJ Hussey| CL White|                  6|
+|    BB McCullum| CL White|                 16|
+|      DJ Hussey|AA Noffke|                  1|
+|      DJ Hussey|   Z Khan|                  3|
+|Mohammad Hafeez|AA Noffke|                  1|
+|Mohammad Hafeez|JH Kallis|                  4|
+|       R Dravid| AB Dinda|                  2|
++---------------+---------+-------------------+
+only showing top 20 rows
+
+>>> resultset = df.groupBy("id").sum("salary");
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'df' is not defined
+>>> joinedDS = studentDataset.join(resultset, "id");
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'studentDataset' is not defined
+>>> final = statmaxDF
+
+
