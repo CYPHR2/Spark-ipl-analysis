@@ -1,0 +1,257 @@
++----------+---------------+----+
+|bowler    |batsman        |runs|
++----------+---------------+----+
+|P Kumar   |SC Ganguly     |0   |
+|P Kumar   |BB McCullum    |0   |
+|P Kumar   |BB McCullum    |0   |
+|P Kumar   |BB McCullum    |0   |
+|P Kumar   |BB McCullum    |0   |
+|P Kumar   |BB McCullum    |0   |
+|P Kumar   |BB McCullum    |0   |
+|Z Khan    |BB McCullum    |0   |
+|Z Khan    |BB McCullum    |4   |
+|Z Khan    |BB McCullum    |4   |
+|Z Khan    |BB McCullum    |6   |
+|Z Khan    |BB McCullum    |4   |
+|Z Khan    |BB McCullum    |0   |
+|P Kumar   |SC Ganguly     |0   |
+|P Kumar   |SC Ganguly     |0   |
+|P Kumar   |SC Ganguly     |0   |
+|P Kumar   |BB McCullum    |4   |
+|P Kumar   |BB McCullum    |1   |
+|P Kumar   |SC Ganguly     |0   |
+|AA Noffke |BB McCullum    |0   |
+|AA Noffke |BB McCullum    |6   |
+|AA Noffke |BB McCullum    |0   |
+|AA Noffke |SC Ganguly     |4   |
+|AA Noffke |SC Ganguly     |0   |
+|AA Noffke |SC Ganguly     |1   |
+|AA Noffke |BB McCullum    |6   |
+|P Kumar   |SC Ganguly     |4   |
+|P Kumar   |SC Ganguly     |1   |
+|P Kumar   |BB McCullum    |4   |
+|P Kumar   |BB McCullum    |0   |
+|P Kumar   |BB McCullum    |1   |
+|P Kumar   |SC Ganguly     |0   |
+|Z Khan    |BB McCullum    |1   |
+|Z Khan    |SC Ganguly     |0   |
+|Z Khan    |RT Ponting     |0   |
+|Z Khan    |RT Ponting     |0   |
+|Z Khan    |RT Ponting     |0   |
+|Z Khan    |RT Ponting     |0   |
+|AA Noffke |BB McCullum    |1   |
+|AA Noffke |RT Ponting     |1   |
+|AA Noffke |BB McCullum    |1   |
+|AA Noffke |RT Ponting     |2   |
+|AA Noffke |RT Ponting     |1   |
+|AA Noffke |BB McCullum    |1   |
+|Z Khan    |BB McCullum    |0   |
+|Z Khan    |BB McCullum    |1   |
+|Z Khan    |RT Ponting     |1   |
+|Z Khan    |BB McCullum    |1   |
+|Z Khan    |RT Ponting     |1   |
+|Z Khan    |BB McCullum    |1   |
+|JH Kallis |BB McCullum    |0   |
+|JH Kallis |BB McCullum    |0   |
+|JH Kallis |BB McCullum    |0   |
+|JH Kallis |BB McCullum    |1   |
+|JH Kallis |RT Ponting     |1   |
+|JH Kallis |BB McCullum    |2   |
+|SB Joshi  |RT Ponting     |1   |
+|SB Joshi  |BB McCullum    |1   |
+|SB Joshi  |RT Ponting     |1   |
+|SB Joshi  |BB McCullum    |0   |
+|SB Joshi  |BB McCullum    |6   |
+|SB Joshi  |BB McCullum    |1   |
+|JH Kallis |BB McCullum    |1   |
+|JH Kallis |RT Ponting     |4   |
+|JH Kallis |RT Ponting     |0   |
+|JH Kallis |RT Ponting     |6   |
+|JH Kallis |RT Ponting     |0   |
+|JH Kallis |RT Ponting     |0   |
+|SB Joshi  |BB McCullum    |0   |
+|SB Joshi  |BB McCullum    |6   |
+|SB Joshi  |BB McCullum    |2   |
+|SB Joshi  |BB McCullum    |1   |
+|SB Joshi  |RT Ponting     |0   |
+|SB Joshi  |RT Ponting     |1   |
+|JH Kallis |RT Ponting     |0   |
+|JH Kallis |BB McCullum    |4   |
+|JH Kallis |BB McCullum    |0   |
+|JH Kallis |BB McCullum    |2   |
+|JH Kallis |BB McCullum    |0   |
+|JH Kallis |BB McCullum    |4   |
+|JH Kallis |BB McCullum    |1   |
+|SB Joshi  |BB McCullum    |1   |
+|SB Joshi  |DJ Hussey      |0   |
+|SB Joshi  |DJ Hussey      |1   |
+|SB Joshi  |BB McCullum    |1   |
+|SB Joshi  |DJ Hussey      |1   |
+|SB Joshi  |BB McCullum    |2   |
+|CL White  |DJ Hussey      |4   |
+|CL White  |DJ Hussey      |1   |
+|CL White  |BB McCullum    |6   |
+|CL White  |BB McCullum    |4   |
+|CL White  |BB McCullum    |0   |
+|CL White  |DJ Hussey      |1   |
+|CL White  |BB McCullum    |6   |
+|AA Noffke |DJ Hussey      |0   |
+|AA Noffke |DJ Hussey      |1   |
+|AA Noffke |BB McCullum    |2   |
+|AA Noffke |BB McCullum    |0   |
+|AA Noffke |BB McCullum    |1   |
+|AA Noffke |DJ Hussey      |0   |
+|Z Khan    |BB McCullum    |1   |
+|Z Khan    |DJ Hussey      |2   |
+|Z Khan    |DJ Hussey      |1   |
+|Z Khan    |BB McCullum    |6   |
+|Z Khan    |BB McCullum    |2   |
+|Z Khan    |BB McCullum    |2   |
+|AA Noffke |DJ Hussey      |0   |
+|AA Noffke |BB McCullum    |1   |
+|AA Noffke |Mohammad Hafeez|0   |
+|AA Noffke |Mohammad Hafeez|1   |
+|AA Noffke |BB McCullum    |4   |
+|AA Noffke |BB McCullum    |1   |
+|JH Kallis |BB McCullum    |6   |
+|JH Kallis |BB McCullum    |0   |
+|JH Kallis |BB McCullum    |6   |
+|JH Kallis |BB McCullum    |4   |
+|JH Kallis |BB McCullum    |1   |
+|JH Kallis |Mohammad Hafeez|4   |
+|P Kumar   |BB McCullum    |6   |
+|P Kumar   |BB McCullum    |6   |
+|P Kumar   |BB McCullum    |2   |
+|P Kumar   |BB McCullum    |0   |
+|P Kumar   |BB McCullum    |2   |
+|P Kumar   |BB McCullum    |6   |
+|AB Dinda  |R Dravid       |1   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |W Jaffer       |1   |
+|AB Dinda  |R Dravid       |1   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |W Jaffer       |0   |
+|I Sharma  |R Dravid       |0   |
+|I Sharma  |V Kohli        |0   |
+|I Sharma  |V Kohli        |0   |
+|I Sharma  |V Kohli        |1   |
+|I Sharma  |W Jaffer       |0   |
+|I Sharma  |W Jaffer       |0   |
+|AB Dinda  |V Kohli        |0   |
+|AB Dinda  |V Kohli        |0   |
+|AB Dinda  |JH Kallis      |1   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |W Jaffer       |1   |
+|I Sharma  |W Jaffer       |2   |
+|I Sharma  |W Jaffer       |1   |
+|I Sharma  |JH Kallis      |0   |
+|I Sharma  |JH Kallis      |0   |
+|I Sharma  |W Jaffer       |0   |
+|I Sharma  |W Jaffer       |0   |
+|AB Agarkar|JH Kallis      |1   |
+|AB Agarkar|W Jaffer       |1   |
+|AB Agarkar|JH Kallis      |0   |
+|AB Agarkar|JH Kallis      |6   |
+|AB Agarkar|JH Kallis      |0   |
+|AB Agarkar|CL White       |0   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |W Jaffer       |0   |
+|AB Dinda  |MV Boucher     |0   |
+|AB Dinda  |MV Boucher     |1   |
+|AB Dinda  |CL White       |1   |
+|AB Dinda  |MV Boucher     |0   |
+|AB Agarkar|CL White       |0   |
+|AB Agarkar|CL White       |0   |
+|AB Agarkar|CL White       |1   |
+|AB Agarkar|MV Boucher     |0   |
+|AB Agarkar|MV Boucher     |0   |
+|AB Agarkar|MV Boucher     |0   |
+|AB Agarkar|MV Boucher     |0   |
+|AB Agarkar|MV Boucher     |4   |
+|SC Ganguly|CL White       |1   |
+|SC Ganguly|MV Boucher     |0   |
+|SC Ganguly|CL White       |1   |
+|SC Ganguly|MV Boucher     |2   |
+|SC Ganguly|MV Boucher     |0   |
+|SC Ganguly|CL White       |0   |
+|AB Agarkar|B Akhil        |0   |
+|AB Agarkar|B Akhil        |0   |
+|AB Agarkar|AA Noffke      |0   |
+|AB Agarkar|AA Noffke      |0   |
+|AB Agarkar|AA Noffke      |0   |
+|AB Agarkar|AA Noffke      |1   |
+|AB Agarkar|CL White       |2   |
+|AB Agarkar|CL White       |0   |
+|SC Ganguly|AA Noffke      |1   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|AA Noffke      |4   |
+|SC Ganguly|AA Noffke      |1   |
+|AB Agarkar|AA Noffke      |0   |
+|AB Agarkar|AA Noffke      |0   |
+|AB Agarkar|AA Noffke      |0   |
+|AB Agarkar|AA Noffke      |1   |
+|AB Agarkar|P Kumar        |4   |
+|AB Agarkar|P Kumar        |0   |
+|SC Ganguly|AA Noffke      |1   |
+|SC Ganguly|Z Khan         |0   |
+|SC Ganguly|Z Khan         |0   |
+|SC Ganguly|Z Khan         |1   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|P Kumar        |1   |
+|LR Shukla |P Kumar        |6   |
+|LR Shukla |P Kumar        |0   |
+|LR Shukla |Z Khan         |1   |
+|LR Shukla |P Kumar        |1   |
+|LR Shukla |Z Khan         |0   |
+|LR Shukla |Z Khan         |0   |
+|LR Shukla |Z Khan         |1   |
+|SC Ganguly|Z Khan         |0   |
+|SC Ganguly|SB Joshi       |1   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|P Kumar        |0   |
+|SC Ganguly|P Kumar        |6   |
+|I Sharma  |SB Joshi       |0   |
+|I Sharma  |SB Joshi       |0   |
+|I Sharma  |SB Joshi       |0   |
+|I Sharma  |SB Joshi       |1   |
+|I Sharma  |P Kumar        |0   |
+|I Sharma  |SB Joshi       |1   |
+|I Sharma  |P Kumar        |0   |
+|LR Shukla |SB Joshi       |0   |
+|LR Shukla |SB Joshi       |0   |
++----------+---------------+----+
+
+
+
++-----------+----------+---------+
+|    batsman|    bowler|sum(runs)|
++-----------+----------+---------+
+|  AA Noffke|AB Agarkar|        2|
+|  AA Noffke|SC Ganguly|        7|
+|    B Akhil|AB Agarkar|        0|
+|BB McCullum|    Z Khan|       33|
+|BB McCullum| AA Noffke|       24|
+|BB McCullum| JH Kallis|       32|
+|BB McCullum|  SB Joshi|       21|
+|BB McCullum|  CL White|       16|
+|BB McCullum|   P Kumar|       32|
+|   CL White|SC Ganguly|        2|
+|   CL White|  AB Dinda|        1|
+|   CL White|AB Agarkar|        3|
+|  DJ Hussey|  CL White|        6|
+|  DJ Hussey| AA Noffke|        1|
+|  DJ Hussey|  SB Joshi|        2|
+|  DJ Hussey|    Z Khan|        3|
+|  JH Kallis|  I Sharma|        0|
+|  JH Kallis|  AB Dinda|        1|
+|  JH Kallis|AB Agarkar|        7|
+| MV Boucher|AB Agarkar|        4|
++-----------+----------+---------+
+
