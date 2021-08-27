@@ -2,17 +2,22 @@
 >>> 
 >>> 
 >>> from pyspark.sql.functions import *
+
 >>> var = spark.read.json("sample.json", multiLine = "true")
-[Stage 0:>                                                          (0 + 0) / 1[Stage 0:>                                                          (0 + 1) / 1                                                                               21/08/26 05:19:42 WARN package: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
->>> var = spark.read.json("sample.json", multiLine = "true")
+
 >>> var2 = var.select("innings")
+
 >>> var4 = var2.select(explode("innings.overs"))
+
 >>> var5=var4.select(explode("col.deliveries"))
+
+
 >>> dataSet = var5.select("col.batter","col.bowler",col("col.runs.batter").alias("runs"))
->>> dataset.show()
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-NameError: name 'dataset' is not defined
+
+
+
+
+
 >>> dataSet.show()
 [Stage 2:>                                                          (0 + 1) / 1                                                                               +--------------------+--------------------+--------------------+
 |              batter|              bowler|                runs|
